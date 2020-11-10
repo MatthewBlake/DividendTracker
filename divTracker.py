@@ -1,7 +1,6 @@
 import requests
 import bs4
 import json
-from array import *
 
 portfolioValue = float(0.00)
 
@@ -17,13 +16,14 @@ class Stock:
         self.sharesOwned = sharesOwned
         self.valueOfHolding = float("{:.2f}".format(currentPrice*sharesOwned))
         self.valueOfHoldingInEuro = "{:.2f}".format(self.valueOfHolding*exchangeRate)
-        print(ticker + "    " + dividend + "    " + self.valueOfHoldingInEuro)
-        portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
+        if float(self.valueOfHoldingInEuro) < 400:
+            portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
 
-tickers = [['JPM', 0.9776646], ['AAPL', 1.1359216], ['T', 8.513788], ['ABBV', 1.405067], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.187735], ['CL', 2], ['JNJ', 1.336297], ['LEG', 3], ['MRK', 1.276408], ['MSFT', 0.6064628], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 1.916961], ['DIS', 1]]
-#tickers.sort()
+tickers = [['JPM', 1.0790625], ['AAPL', 1.1359216], ['T', 8.513788], ['ABBV', 1.52679], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.187735], ['CL', 2], ['JNJ', 1.336297], ['LEG', 3], ['MRK', 1.420802], ['MSFT', 0.6064628], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.111738], ['DIS', 1]]
 portfolio = []
-#sharesOwned = [0.9776646, 1.1359216, 8.513788, 1.405067, 1, 3, 3, 3.187735, 2, 1.336297, 3, 1.276408, 0.6064628, 1, 3, 5.214147,1.916961, 1]
+valueKeys = {}
+sortArray = []
+outputArray = {}
 
 currencyConverter = requests.get('https://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X&.tsrc=fin-srch')
 converterSoup = bs4.BeautifulSoup(currencyConverter.text, 'lxml')
@@ -35,11 +35,23 @@ for t in range (len(tickers)):
     currentPrice = float((soup.find("span", class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)")).getText())
     dividend = soup.find_all("td", class_="Ta(end) Fw(600) Lh(14px)")
     stock = Stock(tickers[t][0], currentPrice, dividend[13].getText(), dividend[14].getText(), dividend[10].getText(), dividend[11].getText(), tickers[t][1], exchangeRate)
-    jsonStock = json.dumps(stock.__dict__)
-    portfolio.append(jsonStock)
+    portfolio.append(stock)
+    sortArray.append(float(stock.valueOfHoldingInEuro))
+    # print(stock.ticker)
+    # jsonStock = json.dumps(stock.__dict__)
+    # portfolio.append(jsonStock)
 
-with open('portfolio.txt', 'w') as outfile:
-    json.dump(portfolio, outfile)
-# print(portfolio)
+sortArray.sort()
 
-print(portfolioValue)
+for holding in portfolio:
+    valueKeys[float(holding.valueOfHoldingInEuro)] = holding.ticker
+
+for price in sortArray:
+    outputArray[price] = valueKeys[price]
+
+for index in outputArray:
+    print(valueKeys[index] + "      €" + str(index))
+
+# with open('portfolio.txt', 'w') as outfile:
+#     json.dump(portfolio, outfile)
+# print(portfolioValue)
