@@ -50,7 +50,16 @@ for price in sortArray:
     outputArray[price] = valueKeys[price]
 
 for index in outputArray:
-    print(valueKeys[index] + "      €" + str(index))
+    ticker = valueKeys[index]
+    print(ticker + "      €" + str(index))
+    for i in portfolio:
+        if str(i.valueOfHoldingInEuro) == str(index):
+            print(i.dividend)
+    #     for j in tickers:
+    #         if i.ticker == j[0]:
+    #             print(i.dividend)
+    #             print(i.ticker)
+    #             print(j[0])
 
 # with open('portfolio.txt', 'w') as outfile:
 #     json.dump(portfolio, outfile)
