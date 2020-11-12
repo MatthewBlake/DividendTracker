@@ -16,10 +16,11 @@ class Stock:
         self.sharesOwned = sharesOwned
         self.valueOfHolding = float("{:.2f}".format(currentPrice*sharesOwned))
         self.valueOfHoldingInEuro = "{:.2f}".format(self.valueOfHolding*exchangeRate)
+        print(self.ticker+ "   " + self.valueOfHoldingInEuro + "      " + self.dividend)
         if float(self.valueOfHoldingInEuro) < 400:
             portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
 
-tickers = [['JPM', 1.0790625], ['AAPL', 1.1359216], ['T', 8.513788], ['ABBV', 1.52679], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.187735], ['CL', 2], ['JNJ', 1.336297], ['LEG', 3], ['MRK', 1.420802], ['MSFT', 0.6064628], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.111738], ['DIS', 1]]
+tickers = [['JPM', 1.1813487], ['AAPL', 1.1359216], ['T', 8.513788], ['ABBV', 1.769657], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.187735], ['CL', 2], ['JNJ', 1.336297], ['LEG', 3.280331], ['MRK', 1.566231], ['MSFT', 0.6064628], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.694595], ['DIS', 1]]
 portfolio = []
 valueKeys = {}
 sortArray = []
@@ -52,9 +53,9 @@ for price in sortArray:
 for index in outputArray:
     ticker = valueKeys[index]
     print(ticker + "      €" + str(index))
-    for i in portfolio:
-        if str(i.valueOfHoldingInEuro) == str(index):
-            print(i.dividend)
+    # for i in portfolio:
+    #     if str(i.valueOfHoldingInEuro) == str(index):
+    #         print(i.dividend)
     #     for j in tickers:
     #         if i.ticker == j[0]:
     #             print(i.dividend)
