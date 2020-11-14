@@ -20,7 +20,7 @@ class Stock:
         if float(self.valueOfHoldingInEuro) < 400:
             portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
 
-tickers = [['JPM', 1.1813487], ['AAPL', 1.1359216], ['T', 8.513788], ['ABBV', 1.769657], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.187735], ['CL', 2], ['JNJ', 1.336297], ['LEG', 3.280331], ['MRK', 1.566231], ['MSFT', 0.6064628], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.694595], ['DIS', 1]]
+tickers = [['JPM', 1.1813487], ['T', 8.513788], ['ABBV', 1.769657], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 0], ['JNJ', 1.336297], ['LEG', 3.841383], ['MRK', 1.566231], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.694595]]
 portfolio = []
 valueKeys = {}
 sortArray = []
@@ -52,7 +52,8 @@ for price in sortArray:
 
 for index in outputArray:
     ticker = valueKeys[index]
-    print(ticker + "      €" + str(index))
+    percentageOfPortfolio = "{:.2f}".format((index/portfolioValue)*100)
+    print(ticker + "      €" + str(index) + "   " + str(percentageOfPortfolio) + "%")
     # for i in portfolio:
     #     if str(i.valueOfHoldingInEuro) == str(index):
     #         print(i.dividend)
