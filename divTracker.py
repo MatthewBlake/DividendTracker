@@ -22,6 +22,7 @@ class Stock:
 
 tickers = [['JPM', 1.1813487], ['T', 8.513788], ['ABBV', 1.769657], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 0], ['JNJ', 1.336297], ['LEG', 3.841383], ['MRK', 1.566231], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.694595]]
 portfolio = []
+portfolioJSON = []
 valueKeys = {}
 sortArray = []
 outputArray = {}
@@ -38,9 +39,10 @@ for t in range (len(tickers)):
     stock = Stock(tickers[t][0], currentPrice, dividend[13].getText(), dividend[14].getText(), dividend[10].getText(), dividend[11].getText(), tickers[t][1], exchangeRate)
     portfolio.append(stock)
     sortArray.append(float(stock.valueOfHoldingInEuro))
-    # print(stock.ticker)
-    # jsonStock = json.dumps(stock.__dict__)
-    # portfolio.append(jsonStock)
+    print(stock.ticker)
+    jsonStock = json.dumps(stock.__dict__)
+    portfolioJSON.append(jsonStock)
+    portfolio.append(stock)
 
 sortArray.sort()
 
@@ -63,6 +65,6 @@ for index in outputArray:
     #             print(i.ticker)
     #             print(j[0])
 
-# with open('portfolio.txt', 'w') as outfile:
-#     json.dump(portfolio, outfile)
-# print(portfolioValue)
+with open('portfolio.json', 'w') as outfile:
+    json.dump(portfolioJSON, outfile)
+print(portfolioValue)
