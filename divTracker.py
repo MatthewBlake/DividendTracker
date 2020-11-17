@@ -40,7 +40,7 @@ for t in range (len(tickers)):
     portfolio.append(stock)
     sortArray.append(float(stock.valueOfHoldingInEuro))
     print(stock.ticker)
-    jsonStock = json.dumps(stock.__dict__)
+    jsonStock = stock.__dict__
     portfolioJSON.append(jsonStock)
     portfolio.append(stock)
 
@@ -56,15 +56,7 @@ for index in outputArray:
     ticker = valueKeys[index]
     percentageOfPortfolio = "{:.2f}".format((index/portfolioValue)*100)
     print(ticker + "      €" + str(index) + "   " + str(percentageOfPortfolio) + "%")
-    # for i in portfolio:
-    #     if str(i.valueOfHoldingInEuro) == str(index):
-    #         print(i.dividend)
-    #     for j in tickers:
-    #         if i.ticker == j[0]:
-    #             print(i.dividend)
-    #             print(i.ticker)
-    #             print(j[0])
 
-with open('portfolio.json', 'w') as outfile:
+with open('dividend_tracker_react\\src\\portfolio.json', 'w') as outfile:
     json.dump(portfolioJSON, outfile)
 print(portfolioValue)
