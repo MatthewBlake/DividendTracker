@@ -24,7 +24,7 @@ class Stock:
 
 while True:
     print("Scraping...")
-    tickers = [['JPM', 1.1813487], ['T', 8.513788], ['ABBV', 1.769657], ['MMM', 1], ['BMO', 3], ['KO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 2.816006], ['JNJ', 1.336297], ['LEG', 3.841383], ['MRK', 1.566231], ['PEP', 1], ['O', 3], ['STOR', 5.214147], ['VZ', 2.694595]]
+    tickers = [['ABBV', 1.769657], ['BMO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 3.414929], ['JNJ', 1.336297], ['JPM', 1.2224301], ['KO', 3], ['LEG', 3.841383], ['MMM', 1], ['MRK', 1.763289], ['PEP', 1], ['O', 3.180706], ['STOR', 5.293362], ['T', 8.513788], ['VZ', 2.694595]]
     portfolio = []
     portfolioJSON = []
     valueKeys = {}
@@ -65,4 +65,4 @@ while True:
         json.dump(portfolioJSON, outfile)
    # print(portfolioValue)
 
-    #time.sleep(10)
+   
