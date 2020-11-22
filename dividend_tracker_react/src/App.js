@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import positions from './portfolio.json';
 import {PieChart} from 'react-minimal-pie-chart';
 
+let totalPortfolioValue = 0;
+
+for(let i=0; i<positions.length; i++){
+    totalPortfolioValue += positions[i].valueOfHoldingInEuro;
+  }
+
+totalPortfolioValue = totalPortfolioValue.toFixed(2);
+
 const Holdings=()=>{
   return(
     <React.Fragment>
       <h1>Dividend Tracking App</h1>
-      <h2>Total Portfolio Value: </h2>
+      <h2>Total Portfolio Value: €{totalPortfolioValue}</h2>
       <br />
         {positions.map((holding, index)=>{
           return <ul>
@@ -26,46 +34,29 @@ const Holdings=()=>{
   )
 }
 
-// positions[0].valueOfHoldingInEuro
-// positions[1].valueOfHoldingInEuro
-// positions[2].valueOfHoldingInEuro
-// positions[3].valueOfHoldingInEuro
-// positions[4].valueOfHoldingInEuro
-// positions[5].valueOfHoldingInEuro
-// positions[6].valueOfHoldingInEuro
-// positions[7].valueOfHoldingInEuro
-// positions[8].valueOfHoldingInEuro
-// positions[9].valueOfHoldingInEuro
-// positions[10].valueOfHoldingInEuro
-// positions[11].valueOfHoldingInEuro
-// positions[12].valueOfHoldingInEuro
-// positions[13].valueOfHoldingInEuro
-// positions[14].valueOfHoldingInEuro
-// positions[15].valueOfHoldingInEuro
-
 const data=[
-        {title: positions[0].ticker, value: 100, color: 'blue'},
-        {title: positions[1].ticker, value: 100, color: '#BFFCC6'},
-        {title: positions[2].ticker, value: 100, color: '#FF9CEE'},
-        {title: positions[3].ticker, value: 100, color: '#C5A3FF'},
-        {title: positions[4].ticker, value: 100, color: '#C4FAF8'},
-        {title: positions[5].ticker, value: 100, color: '#DBFFD6'},
-        {title: positions[6].ticker, value: 100, color: '#FFB5E8'},
-        {title: positions[7].ticker, value: 100, color: '#FFC9DE'},
-        {title: positions[8].ticker, value: 100, color: '#FFABAB'},
-        {title: positions[9].ticker, value: 100, color: '#AFF8D8'},
-        {title: positions[10].ticker, value: 100, color: '#85E3FF'},
-        {title: positions[11].ticker, value: 100, color: '#FFBEBC'},
-        {title: positions[12].ticker, value: 100, color: '#ECD4FF'},
-        {title: positions[13].ticker, value: 100, color: '#FFF5BA'},
-        {title: positions[14].ticker, value: 100, color: '#B28DFF'},
-        {title: positions[15].ticker, value: 100, color: '#6EB5FF'},
+        {title: positions[0].ticker, value: positions[0].valueOfHoldingInEuro, color: '#DCD3FF'},
+        {title: positions[1].ticker, value: positions[1].valueOfHoldingInEuro, color: '#BFFCC6'},
+        {title: positions[2].ticker, value: positions[2].valueOfHoldingInEuro, color: '#FF9CEE'},
+        {title: positions[3].ticker, value: positions[3].valueOfHoldingInEuro, color: '#C5A3FF'},
+        {title: positions[4].ticker, value: positions[4].valueOfHoldingInEuro, color: '#C4FAF8'},
+        {title: positions[5].ticker, value: positions[5].valueOfHoldingInEuro, color: '#DBFFD6'},
+        {title: positions[6].ticker, value: positions[6].valueOfHoldingInEuro, color: '#FFB5E8'},
+        {title: positions[7].ticker, value: positions[7].valueOfHoldingInEuro, color: '#FFC9DE'},
+        {title: positions[8].ticker, value: positions[8].valueOfHoldingInEuro, color: '#FFABAB'},
+        {title: positions[9].ticker, value: positions[9].valueOfHoldingInEuro, color: '#AFF8D8'},
+        {title: positions[10].ticker, value: positions[10].valueOfHoldingInEuro, color: '#85E3FF'},
+        {title: positions[11].ticker, value: positions[11].valueOfHoldingInEuro, color: '#FFBEBC'},
+        {title: positions[12].ticker, value: positions[12].valueOfHoldingInEuro, color: '#ECD4FF'},
+        {title: positions[13].ticker, value: positions[13].valueOfHoldingInEuro, color: '#FFF5BA'},
+        {title: positions[14].ticker, value: positions[14].valueOfHoldingInEuro, color: '#B28DFF'},
+        {title: positions[15].ticker, value: positions[15].valueOfHoldingInEuro, color: '#6EB5FF'},
       ];
 
 const Chart=()=>{
   return (
     <React.Fragment>
-      <PieChart style={{backgroundColor: '#404953'}} radius={20} labelPosition={112} animate data={data}/>
+      <PieChart style={{backgroundColor: '#404953'}} radius={25} labelPosition={112} animate data={data}/>
     </React.Fragment>
   )
 }

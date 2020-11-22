@@ -17,7 +17,7 @@ class Stock:
         self.EPS = EPS
         self.sharesOwned = sharesOwned
         self.valueOfHolding = float("{:.2f}".format(currentPrice*sharesOwned))
-        self.valueOfHoldingInEuro = "{:.2f}".format(self.valueOfHolding*exchangeRate)
+        self.valueOfHoldingInEuro = float("{:.2f}".format(self.valueOfHolding*exchangeRate))
         # print(self.ticker+ "   " + self.valueOfHoldingInEuro + "      " + self.dividend)
         if float(self.valueOfHoldingInEuro) < 400:
             portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
