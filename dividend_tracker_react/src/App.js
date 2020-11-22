@@ -22,6 +22,7 @@ const Holdings=()=>{
         {positions.map((holding, index)=>{
           return <ul>
             <li>ticker - {holding.ticker}</li>
+            <li>sector - {holding.sector}</li>
             <li>current price - ${holding.currentPrice}</li>
             <li>dividend - ${holding.dividend}</li>
             <li>ex dividend date - {holding.exDividendDate}</li>

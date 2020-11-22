@@ -5,11 +5,16 @@ import schedule
 import time
 
 portfolioValue = float(0.00)
+tickers = [['ABBV', 2.120597], ['BMO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 3.738365], ['JNJ', 1.336297], ['JPM', 1.3449412], ['KO', 3], ['LEG', 3.841383], ['MMM', 1], ['MRK', 1.924756], ['PEP', 1.0737748], ['O', 3.501692], ['STOR', 5.760692], ['T', 8.513788], ['VZ', 2.694595]]
 
 class Stock:
     def __init__(self, ticker, currentPrice, dividend, exDividendDate, PERatio, EPS, sharesOwned, exchangeRate):
         global portfolioValue
+
+        sectorRequest = requests.get('https://finance.yahoo.com/quote/'+ticker+'/profile?p='+ticker)
+        sectorSoup = bs4.BeautifulSoup(sectorRequest.text, 'lxml')
         self.ticker = ticker
+        self.sector = (sectorSoup.find("span", class_="Fw(600)")).getText()
         self.currentPrice = currentPrice
         self.dividend = dividend
         self.exDividendDate = exDividendDate
@@ -18,13 +23,11 @@ class Stock:
         self.sharesOwned = sharesOwned
         self.valueOfHolding = float("{:.2f}".format(currentPrice*sharesOwned))
         self.valueOfHoldingInEuro = float("{:.2f}".format(self.valueOfHolding*exchangeRate))
-        # print(self.ticker+ "   " + self.valueOfHoldingInEuro + "      " + self.dividend)
         if float(self.valueOfHoldingInEuro) < 400:
             portfolioValue = float("{:.2f}".format(portfolioValue + float(self.valueOfHoldingInEuro)))
 
 while True:
     print("Scraping...")
-    tickers = [['ABBV', 2.120597], ['BMO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 3.738365], ['JNJ', 1.336297], ['JPM', 1.3449412], ['KO', 3], ['LEG', 3.841383], ['MMM', 1], ['MRK', 1.924756], ['PEP', 1.0737748], ['O', 3.501692], ['STOR', 5.760692], ['T', 8.513788], ['VZ', 2.694595]]
     portfolio = []
     portfolioJSON = []
     valueKeys = {}
@@ -43,7 +46,6 @@ while True:
         stock = Stock(tickers[t][0], currentPrice, dividend[13].getText(), dividend[14].getText(), dividend[10].getText(), dividend[11].getText(), tickers[t][1], exchangeRate)
         portfolio.append(stock)
         sortArray.append(float(stock.valueOfHoldingInEuro))
-        # print(stock.ticker)
         jsonStock = stock.__dict__
         portfolioJSON.append(jsonStock)
         portfolio.append(stock)
@@ -59,10 +61,6 @@ while True:
     for index in outputArray:
         ticker = valueKeys[index]
         percentageOfPortfolio = "{:.2f}".format((index/portfolioValue)*100)
-       # print(ticker + "      €" + str(index) + "   " + str(percentageOfPortfolio) + "%")
 
     with open('dividend_tracker_react\\src\\portfolio.json', 'w') as outfile:
         json.dump(portfolioJSON, outfile)
-   # print(portfolioValue)
-
-   
