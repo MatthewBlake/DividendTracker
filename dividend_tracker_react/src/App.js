@@ -26,6 +26,7 @@ const Holdings=()=>{
             <li>current price - ${holding.currentPrice}</li>
             <li>dividend - ${holding.dividend}</li>
             <li>ex dividend date - {holding.exDividendDate}</li>
+            <li>dividend Date - {holding.dividendDate}</li>
             <li>P/E Ratio - {holding.PERatio}</li>
             <li>payout Ratio - {holding.payoutRatio}</li>
             <li>EPS - ${holding.EPS}</li>

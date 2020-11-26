@@ -25,6 +25,7 @@ class Stock:
         self.exDividendDate = exDividendDate
         self.PERatio = PERatio
         self.payoutRatio = statisticsArray[23].getText()
+        self.dividendDate = statisticsArray[24].getText()
         self.EPS = EPS
         self.sharesOwned = sharesOwned
         self.valueOfHolding = float("{:.2f}".format(currentPrice*sharesOwned))
