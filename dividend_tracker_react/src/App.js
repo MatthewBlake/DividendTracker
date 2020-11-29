@@ -43,10 +43,15 @@ for(let i=0; i<positions.length;i++){
   data.push({title: positions[i].ticker, value: positions[i].valueOfHoldingInEuro, color: colours[i]});
 }
 
+const defaultLabelStyle = {
+  fontSize: '2px',
+  fontFamily: 'sans-serif',
+};
+
 const Chart=()=>{
   return (
     <React.Fragment>
-      <PieChart style={{backgroundColor: '#404953'}} radius={25} labelPosition={112} animate data={data}/>
+      <PieChart label={({dataEntry}) => dataEntry.title} style={{backgroundColor: '#404953'}} radius={25} labelStyle={defaultLabelStyle} labelPosition={75} animate data={data}/>
     </React.Fragment>
   )
 }
