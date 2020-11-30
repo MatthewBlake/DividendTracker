@@ -5,7 +5,9 @@ import {PieChart} from 'react-minimal-pie-chart';
 
 let totalPortfolioValue = 0;
 const data = [];
-const colours = ['#DCD3FF', '#BFFCC6', '#FF9CEE', '#C5A3FF', '#C4FAF8', '#DBFFD6', '#FFB5E8', '#FFC9DE', '#FFABAB', '#AFF8D8', '#85E3FF', '#FFBEBC', '#ECD4FF', '#FFF5BA', '#B28DFF', '#6EB5FF'];
+const colours = ['#DCD3FF', '#BFFCC6', '#FF9CEE', '#C5A3FF', '#C4FAF8', '#DBFFD6', '#FFB5E8', '#FFC9DE', '#FFABAB', '#AFF8D8', '#85E3FF', '#FFBEBC', '#ECD4FF', '#FFF5BA', '#B28DFF', '#6EB5FF', '#FF9AA2'];
+
+//colours.sort(() => Math.random() - 0.5);
 
 for(let i=0; i<positions.length; i++){
     totalPortfolioValue += positions[i].valueOfHoldingInEuro;
@@ -44,14 +46,14 @@ for(let i=0; i<positions.length;i++){
 }
 
 const defaultLabelStyle = {
-  fontSize: '2px',
+  fontSize: '1.25px',
   fontFamily: 'sans-serif',
 };
 
 const Chart=()=>{
   return (
     <React.Fragment>
-      <PieChart label={({dataEntry}) => dataEntry.title} style={{backgroundColor: '#404953'}} radius={25} labelStyle={defaultLabelStyle} labelPosition={75} animate data={data}/>
+      <PieChart label={({dataEntry}) => dataEntry.title + "\n " + ((dataEntry.value/totalPortfolioValue)*100).toFixed(2) + "%"} style={{backgroundColor: '#404953'}} radius={25} labelStyle={defaultLabelStyle} labelPosition={85} animate data={data}/>
     </React.Fragment>
   )
 }
