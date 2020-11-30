@@ -5,9 +5,7 @@ import {PieChart} from 'react-minimal-pie-chart';
 
 let totalPortfolioValue = 0;
 const data = [];
-const colours = ['#DCD3FF', '#BFFCC6', '#FF9CEE', '#C5A3FF', '#C4FAF8', '#DBFFD6', '#FFB5E8', '#FFC9DE', '#FFABAB', '#AFF8D8', '#85E3FF', '#FFBEBC', '#ECD4FF', '#FFF5BA', '#B28DFF', '#6EB5FF', '#FF9AA2'];
-
-//colours.sort(() => Math.random() - 0.5);
+const colours = ['#DCD3FF', '#BFFCC6', '#FF9CEE', '#C5A3FF', '#C4FAF8', '#DBFFD6', '#FFB5E8', '#FFC9DE', '#FFABAB', '#AFF8D8', '#85E3FF', '#FFBEBC', '#ECD4FF', '#FFF5BA', '#B28DFF', '#6EB5FF'];
 
 for(let i=0; i<positions.length; i++){
     totalPortfolioValue += positions[i].valueOfHoldingInEuro;

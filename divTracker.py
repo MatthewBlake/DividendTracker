@@ -5,7 +5,7 @@ import schedule
 import time
 
 portfolioValue = float(0.00)
-tickers = [['ABBV', 2.3798597], ['BMO', 3], ['BNS', 3.69765], ['CL', 2], ['CSCO', 3.950743], ['DLR', 0.7263237], ['JNJ', 1.336297], ['JPM', 1.6454526], ['KO', 3.919326], ['LEG', 3.841383], ['MMM', 1], ['MRK', 2.11251], ['PEP', 1.0737748], ['O', 4.33453], ['STOR', 6.965901], ['T', 8.513788], ['VZ', 3.830896]]
+tickers = [['ABBV', 2.3798597], ['BMO', 3], ['BNS', 3.69765], ['CSCO', 3.950743], ['KO', 3.919326], ['JNJ', 1.336297], ['JPM', 1.6454526], ['DLR', 0.7263237], ['LEG', 3.841383], ['MMM', 1], ['MRK', 2.11251], ['PEP', 1.0737748], ['O', 4.33453], ['STOR', 6.965901], ['T', 8.513788], ['VZ', 3.830896]]
 
 class Stock:
     def __init__(self, ticker, currentPrice, dividend, exDividendDate, PERatio, EPS, sharesOwned, exchangeRate):
