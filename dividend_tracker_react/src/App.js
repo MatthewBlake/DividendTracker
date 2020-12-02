@@ -16,22 +16,20 @@ totalPortfolioValue = totalPortfolioValue.toFixed(2);
 const Holdings=()=>{
   return(
     <React.Fragment>
-      <h1>Dividend Tracking App</h1>
-      <h2>Total Portfolio Value: €{totalPortfolioValue}</h2>
-      <br />
         {positions.map((holding, index)=>{
           return <ul>
-            <li>ticker - {holding.ticker}</li>
-            <li>sector - {holding.sector}</li>
-            <li>current price - ${holding.currentPrice}</li>
-            <li>dividend - ${holding.dividend}</li>
-            <li>ex dividend date - {holding.exDividendDate}</li>
-            <li>dividend Date - {holding.dividendDate}</li>
-            <li>P/E Ratio - {holding.PERatio}</li>
-            <li>payout Ratio - {holding.payoutRatio}</li>
-            <li>EPS - ${holding.EPS}</li>
-            <li>shares owned - {holding.sharesOwned}</li>
-            <li>value of holding - ${holding.valueOfHolding} (€{holding.valueOfHoldingInEuro})</li>
+            <ul><h3>{holding.ticker}</h3>
+            <li>sector - <strong>{holding.sector}</strong></li>
+            <li>current price - <strong>${holding.currentPrice}</strong></li>
+            <li>dividend - <strong>${holding.dividend}</strong></li>
+            <li>ex dividend date - <strong>{holding.exDividendDate}</strong></li>
+            <li>dividend Date - <strong>{holding.dividendDate}</strong></li>
+            <li>P/E Ratio - <strong>{holding.PERatio}</strong></li>
+            <li>payout Ratio - <strong>{holding.payoutRatio}</strong></li>
+            <li>EPS - <strong>${holding.EPS}</strong></li>
+            <li>shares owned - <strong>{holding.sharesOwned}</strong></li>
+            <li>value of holding - <strong>${holding.valueOfHolding} (€{holding.valueOfHoldingInEuro})</strong></li>
+            </ul>
             <br />
           </ul>
         })}
@@ -59,6 +57,8 @@ const Chart=()=>{
 function App() {
   return (
     <>
+    <h1>Dividend Tracking App</h1>
+    <h2>Total Portfolio Value: €{totalPortfolioValue}</h2>
     <Chart></Chart>
     <Holdings></Holdings>
     </>

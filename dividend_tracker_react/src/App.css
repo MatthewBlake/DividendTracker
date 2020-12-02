@@ -2,13 +2,26 @@
   box-sizing: border-box;
   margin: 0;
   padding: 5;
-  background-color: 'black';
+  background-color: #404953;
+  color: white;
 }
 
 body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
-  background-color: black;
+  background-color: '#404953';
+}
+
+ul{
+	list-style-type: none;
+}
+
+h1{
+	list-style-type: none;
+	color: '#404953';
+	display: flex;
+	flex-wrap: wrap;
+	align-content: right;
 }
 
 a{
