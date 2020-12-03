@@ -19,9 +19,12 @@ class Stock:
         statisticsArray = statisticsSoup.find_all("td", class_="Fw(500) Ta(end) Pstart(10px) Miw(60px)")
         
         self.ticker = ticker
+        print(ticker)
         self.sector = (sectorSoup.find("span", class_="Fw(600)")).getText()
         self.currentPrice = currentPrice
-        self.dividend = dividend
+        self.dividendYield = dividend[dividend.find("(")+1:dividend.find(")")-1]
+        self.dividendPerYear = float("{:.2f}".format(float(dividend[:dividend.find("(")])*sharesOwned))
+        self.dividendPerYearInEuro = float("{:.2f}".format(self.dividendPerYear*exchangeRate))
         self.exDividendDate = exDividendDate
         self.PERatio = PERatio
         self.payoutRatio = statisticsArray[23].getText()
