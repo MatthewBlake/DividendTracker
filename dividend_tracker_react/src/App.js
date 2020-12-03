@@ -23,7 +23,7 @@ const Holdings=()=>{
           return <ul>
             <ul><h3>{holding.ticker}</h3>
             <li>sector - <strong>{holding.sector}</strong></li>
-            <li>current price - <strong>${holding.currentPrice}</strong></li>
+            <li>current price - <strong>${holding.currentPrice} (€{holding.currentPriceInEuro})</strong></li>
             <li>dividend yield - <strong>{holding.dividendYield}%</strong></li>
             <li>dividend per year - <strong>${holding.dividendPerYear} (€{holding.dividendPerYearInEuro})</strong></li>
             <li>ex dividend date - <strong>{holding.exDividendDate}</strong></li>

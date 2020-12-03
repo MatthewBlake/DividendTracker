@@ -22,6 +22,7 @@ class Stock:
         print(ticker)
         self.sector = (sectorSoup.find("span", class_="Fw(600)")).getText()
         self.currentPrice = currentPrice
+        self.currentPriceInEuro = "{:.2f}".format(currentPrice*exchangeRate)
         self.dividendYield = dividend[dividend.find("(")+1:dividend.find(")")-1]
         self.dividendPerYear = float("{:.2f}".format(float(dividend[:dividend.find("(")])*sharesOwned))
         self.dividendPerYearInEuro = float("{:.2f}".format(self.dividendPerYear*exchangeRate))
